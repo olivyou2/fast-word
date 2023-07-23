@@ -1,4 +1,7 @@
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components"
 
 const WpmDisplayWrapper = styled.div`
@@ -85,6 +88,17 @@ const ThemeChangeBtn = styled.div`
   transition: color 150ms ease-in-out;
 `;
 
+const BackWrapper = styled.div`
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 function App() {
   const [wpm, setWpm] = useState(400);
 
@@ -96,6 +110,8 @@ function App() {
   const [words, setWords] = useState([]);
   const [wordIndex, setWordIndex] = useState(0);
   const [animation, setAnimation] = useState(true);
+
+  const navigate = useNavigate();
 
   // Initial Setting
   useEffect(() => {
@@ -259,6 +275,9 @@ function App() {
         </ThemeChangeBtn>
       </WpmDisplayWrapper>
 
+      <BackWrapper onClick={() => navigate("/")}>
+        <FontAwesomeIcon icon={faArrowLeft} size="2xl" color="white" />
+      </BackWrapper>
 
     </Background>
   )
